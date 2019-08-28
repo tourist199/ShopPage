@@ -64,6 +64,25 @@ class App extends Component {
             "https://shopdidong.vn/profiles/shopdidongvn/uploads/attach/1552589718_htc10.jpg",
           star: 2
         }
+      ],
+      listSlider: [
+        {
+          id: 1,
+          name: "First slider",
+          image:
+            "https://demo.devdao.net/wp-content/uploads/2018/02/banner3.jpg"
+        },
+        {
+          id: 2,
+          name: "Second slider",
+          image: "https://phukiensi.vn/uploads/slider/images/slide-4.jpg"
+        },
+        {
+          id: 3,
+          name: "Third slider",
+          image:
+            "https://sites.google.com/site/linhphukiendienthoaihcm/_/rsrc/1488788148443/home/1.jpg"
+        }
       ]
     };
   }
@@ -75,7 +94,7 @@ class App extends Component {
           <div className="row">
             <Sidebar />
             <div className="col-lg-9">
-              <Sliders />
+              <Sliders sliders={this.state.listSlider} />
               <Products products={this.state.listProduct} />
             </div>
           </div>

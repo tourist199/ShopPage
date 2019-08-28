@@ -2,6 +2,14 @@ import React, { Component } from "react";
 
 export default class Sliders extends Component {
   render() {
+    let sliders = this.props.sliders;
+    let slider = sliders.map((s, index) => {
+      return (
+        <div className="carousel-item" key={index}>
+          <img className="d-block img-fluid" src={s.image} alt={s.name} />
+        </div>
+      );
+    });
     return (
       <div
         id="carouselExampleIndicators"
@@ -39,6 +47,7 @@ export default class Sliders extends Component {
               alt="Third slide"
             />
           </div>
+          {slider}
         </div>
         <a
           className="carousel-control-prev"
