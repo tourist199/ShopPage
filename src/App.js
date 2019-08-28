@@ -52,6 +52,17 @@ class App extends Component {
           image: 'https://cdn.fptshop.com.vn/Uploads/Originals/2018/12/11/636801240961123743_vsmart-joy1-plus-den-1.png',
           star:4
         }
+      ],
+      ListCart : [
+        {
+          id: 5,
+          name: 'Vinsmart Joy1',
+          price: 700,
+          desc: 'Điện thoại của Vin',
+          image: 'https://cdn.fptshop.com.vn/Uploads/Originals/2018/12/11/636801240961123743_vsmart-joy1-plus-den-1.png',
+          star:4,
+          quantity: 2
+        }
       ]
     
     }
@@ -63,25 +74,18 @@ class App extends Component {
       <div >
         <div>
           <Header />
-          {/* Page Content */}
           <div className="container">
             <div className="row">
               <SideBar />
-              {/* /.col-lg-3 */}
               <div className="col-lg-9">
                 <Slide />
                 <Products products = {this.state.listDT}/>
-                {/* /.row */}
               </div>
-              {/* /.col-lg-9 */}
             </div>
-            {/* /.row */}
 
-            <Cart/>
+            <Cart />
 
           </div>
-          {/* /.container */}
-          {/* Footer */}
           <Footer />
         </div>
 
