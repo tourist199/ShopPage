@@ -29,6 +29,7 @@ class Cart extends Component {
     });
     return total;
   };
+
   render() {
     return (
       <div className="jumbotron">

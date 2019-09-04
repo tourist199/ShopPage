@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import ProductItem from "./ProductItem";
-export default class Products extends Component {
-  //   addToCart = item => {
-  //     this.props.addToCart(item);
-  //   };
-
+class Products extends Component {
   showProducts = products => {
     if (products)
       return products.map((item, index) => {
@@ -19,7 +15,7 @@ export default class Products extends Component {
   };
 
   render() {
-    var products = this.props.products;
-    return <div className="row">{this.showProducts(products)}</div>;
+    return <div className="row">{this.showProducts(this.props.products)}</div>;
   }
 }
+export default Products;

@@ -29,6 +29,7 @@ export default class ProductItem extends Component {
           <div className="card-footer box-flex">
             <p style={{ color: "#f1c40f" }}>{this.showStar(product.star)}</p>
             <div
+              style={{ padding: "5px 15px" }}
               className="btn btn-danger btn-muahang"
               onClick={() => this.onClick(product)}
             >

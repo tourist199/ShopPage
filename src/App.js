@@ -41,18 +41,18 @@ class App extends Component {
         },
         {
           id: 4,
-          name: "Fmobile T12",
+          name: "Samsung T12",
           price: 700,
-          desc: "Điện thoại của FMobile",
+          desc: "Điện thoại của Samsung",
           image:
             "https://img.websosanh.vn/v2/users/dclimg/images/ufdrie60ez77o.jpg",
           star: 3
         },
         {
           id: 5,
-          name: "Vinsmart Joy1",
+          name: "Samsung Joy1",
           price: 700,
-          desc: "Điện thoại của Vin",
+          desc: "Điện thoại của Samsung",
           image:
             "https://cdn.fptshop.com.vn/Uploads/Originals/2018/12/11/636801240961123743_vsmart-joy1-plus-den-1.png",
           star: 4
@@ -61,6 +61,54 @@ class App extends Component {
       listCart: []
     };
   }
+  showCart = cart => {
+    if (cart.length !== 0) {
+      return (
+        <div className="list-cart">
+          <div className="alert alert-success text-center">
+            Bạn đã thêm vào giỏ hàng 1 sản phẩm!
+          </div>
+          <Cart
+            carts={this.state.listCart}
+            onChangeQuality={this.onChangeQuality}
+            onDelete={this.onDelete}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="alert alert-warning text-center">
+          Giỏ hàng đang trống!
+        </div>
+      );
+    }
+  };
+  render() {
+    return (
+      <div>
+        <div>
+          <Header />
+          <div className="container">
+            <div className="row">
+              <SideBar />
+              <div className="col-lg-9">
+                <Slide />
+                <Products
+                  products={this.state.listDT}
+                  addToCart={this.addToCart}
+                />
+              </div>
+              <div className="add-cart col-12">
+                {this.showCart(this.state.listCart)}
+              </div>
+            </div>
+          </div>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+
   addToCart = item => {
     let listCartItem = this.state.listCart;
     let index = listCartItem.find(x => x.id === item.id);
@@ -94,34 +142,6 @@ class App extends Component {
       listCart: listCartItem
     });
   };
-
-  render() {
-    return (
-      <div>
-        <div>
-          <Header />
-          <div className="container">
-            <div className="row">
-              <SideBar />
-              <div className="col-lg-9">
-                <Slide />
-                <Products
-                  products={this.state.listDT}
-                  addToCart={this.addToCart}
-                />
-              </div>
-            </div>
-            <Cart
-              carts={this.state.listCart}
-              onChangeQuality={this.onChangeQuality}
-              onDelete={this.onDelete}
-            />
-          </div>
-          <Footer />
-        </div>
-      </div>
-    );
-  }
 }
 
 export default App;
