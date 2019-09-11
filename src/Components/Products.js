@@ -4,7 +4,7 @@ export default class Products extends Component {
     showProducts = (products) => {
         if (products)
             return products.map((item, index)=>{
-                return <ProductItem item = {item} key = {index} />
+                return <ProductItem addToCart={this.props.addToCart} item = {item} key = {index} />
             })
     }
 

@@ -10,6 +10,9 @@ export default class ProductItem extends Component {
                 rs+= '☆ ';
         return rs;
     }
+    onClick = (product) => {
+      this.props.addToCart ({...product, quantity:1})
+    }
     render() {
         var product = this.props.item;
         return (
@@ -25,7 +28,7 @@ export default class ProductItem extends Component {
                     </div>
                     <div className="card-footer box-flex" >
                       <p  style = {{color : '#f1c40f'}}>{this.showStar(product.star)}</p>
-                      <div className = "btn btn-danger btn-muahang">Mua hàng</div>
+                      <div className = "btn btn-danger btn-muahang" onClick={()=>{this.onClick(product)}}>Mua hàng</div>
                     </div>
                     
                   </div>
