@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class SideBar extends Component {
   filterCategory = (list) => {
@@ -10,18 +11,25 @@ export default class SideBar extends Component {
     }
     return listCategory;
   }
+  
   showCategory = (listCate)=>{
     return listCate.map((item,index)=>{
-      return <a key={index} href="/" onClick={(e)=>{return this.props.changeFilterCategory(e,item)}} className="list-group-item">{item}</a>
+      return <Link key={index} to='/'
+      onClick={(e)=>{return this.props.changeFilterCategory(e,item)}} 
+      className={this.props.filterCategory===item?`list-group-item active`:`list-group-item`}
+      >
+        {item}
+      </Link>
     })
   }
+
   render() {
     var listCate = this.filterCategory(this.props.listDT);
     return (
       <div className="col-lg-3">
         <h1 className="my-4">CodersX</h1>
-        <div className="list-group">
-          <a href="/" onClick={(e)=>{return this.props.changeFilterCategory(e,'')}} className="list-group-item">All</a>
+        <div className="list-group"> 
+          <Link href="/" onClick={(e)=>{return this.props.changeFilterCategory(e,'')}} className={this.props.filterCategory?`list-group-item`:`list-group-item active`} >All</Link>
           {this.showCategory(listCate)}
         </div>
       </div>

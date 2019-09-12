@@ -6,6 +6,9 @@ import Products from './Components/Products';
 import Footer from './Components/Footer';
 import Cart from './Components/Cart';
 import './App.css';
+import router from './router';
+import { BrowserRouter as Router, Route, Link,Switch } from 'react-router-dom'
+
 
 class App extends Component {
   constructor(props) {
@@ -138,32 +141,40 @@ class App extends Component {
     return list.filter((x)=>x.category===filter);
   }
   changeFilterCategory = (e,filter)=>{
-    e.preventDefault();
     this.setState({filterCategory:filter})
   }
 
 
+  showRoutes = (routers)=>{
+    return routers.map((item,index)=>{
+      return <Route key={index} path={item.path} exact={item.exact} component={item.main} />
+    })
+
+  }
   render() {
     
     return (
       <div >
-        <div>
-          <Header />
-          <div className="container">
-            <div className="row">
-              <SideBar listDT = {this.state.listDT} changeFilterCategory={this.changeFilterCategory} />
-              <div className="col-lg-9">
-                <Slide />
-                <Products products = {this.filterProducts(this.state.listDT,this.state.filterCategory)} addToCart = {this.addToCart}  />
+        <Router>
+          <div>
+            <Header listcart ={this.state.ListCart} />
+            <div className="container">
+              <div className="row">
+                <SideBar listDT = {this.state.listDT} changeFilterCategory={this.changeFilterCategory} filterCategory={this.state.filterCategory}  />
+                <div className="col-lg-9">
+                  <Slide />
+                  <Switch>
+                    <Route path="/" exact component={()=><Products  products = {this.filterProducts(this.state.listDT,this.state.filterCategory)} addToCart = {this.addToCart}  />}/>
+                    <Route path="/cart" component={()=><Cart listcart = {this.state.ListCart} changeQuantity={this.changeQuantity} onDelete={this.onDelete}/>} />
+                    {this.showRoutes(router)}
+                  </Switch>
+                </div>
               </div>
+              
             </div>
-
-            <Cart listcart = {this.state.ListCart} changeQuantity={this.changeQuantity} onDelete={this.onDelete}/>
-
+            <Footer />
           </div>
-          <Footer />
-        </div>
-
+        </Router>
       </div>
     );
   }

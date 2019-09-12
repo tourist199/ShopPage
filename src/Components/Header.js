@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom'
+import './Header.css'
 
 class Header extends Component {
+   
     render() {
+        var listcart = this.props.listcart;
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div className="container">
@@ -11,20 +15,31 @@ class Header extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarResponsive">
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item active">
-                                <a className="nav-link" href="/">Home
-                                    <span className="sr-only">(current)</span>
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">About</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">Services</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">Contact</a>
-                            </li>
+                            <NavLink  activeClassName="active1" to="/cart">
+                                <li className="nav-item">
+                                    <p className="nav-link">Cart ({listcart.length})</p>
+                                </li>
+                            </NavLink>
+                            <NavLink activeClassName="active1" exact to="/" >
+                                <li className="nav-item">
+                                    <p className="nav-link">Home</p>
+                                </li>
+                            </NavLink>
+                            <NavLink activeClassName="active1" to="/About">
+                                <li className="nav-item">
+                                    <p className="nav-link">About</p>
+                                </li>
+                            </NavLink>
+                            <NavLink activeClassName="active1" to="/Services">
+                                <li className="nav-item">
+                                    <p className="nav-link" >Services</p>
+                                </li>
+                            </NavLink>
+                            <NavLink activeClassName="active1" to="/Contact">
+                                <li className="nav-item">
+                                    <p className="nav-link">Contact</p>
+                                </li>
+                            </NavLink>
                         </ul>
                     </div>
                 </div>
