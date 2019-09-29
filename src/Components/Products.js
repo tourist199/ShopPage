@@ -1,19 +1,25 @@
-import React, { Component } from 'react'
-import ProductItem from './ProductItem'
+import React, { Component } from "react";
+import ProductItem from "./ProductItem";
 export default class Products extends Component {
-    showProducts = (products) => {
-        if (products)
-            return products.map((item, index)=>{
-                return <ProductItem item = {item} key = {index} />
-            })
-    }
+  //   addToCart = item => {
+  //     this.props.addToCart(item);
+  //   };
 
-    render() {
-        var products = this.props.products;
+  showProducts = products => {
+    if (products)
+      return products.map((item, index) => {
         return (
-            <div className="row">
-                {this.showProducts(products)}
-            </div>
-        )
-    }
+          <ProductItem
+            item={item}
+            key={index}
+            addToCart={this.props.addToCart}
+          />
+        );
+      });
+  };
+
+  render() {
+    var products = this.props.products;
+    return <div className="row">{this.showProducts(products)}</div>;
+  }
 }

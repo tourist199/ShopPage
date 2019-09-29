@@ -1,4 +1,17 @@
 .box-flex {
-    display: flex;
     justify-content: space-between;
 }
+.fas{
+    size:'15' 
+}
+.btn{
+    padding: 5px;
+    background-color: #007bff;
+}
+.active1{
+    color: #007bff !important;
+}
+/* .card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 10px 0px 0px 10px; a*/
