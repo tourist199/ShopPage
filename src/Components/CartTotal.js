@@ -20,7 +20,8 @@ export default class CartTotal extends Component {
                                             <i className="fa fa-angle-right right"></i>
                                         </button>
                                     </td>
-                                </tr>
+                                </tr> 
+                                
         )
     }
 }
