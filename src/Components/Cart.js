@@ -5,9 +5,9 @@ import CartItem from './CartItem'
 export default class Cart extends Component {
     render() {
         return (
-            <div classname="jumbotron">
-                <h1 classname="display-3">Giỏ hàng</h1>
-                <hr classname="my-2" />
+            <div className="jumbotron">
+                <h1 className="display-3">Giỏ hàng</h1>
+                <hr className="my-2" />
                 <section className="section">
                     <div className="table-responsive">
                         <table className="table product-table">
