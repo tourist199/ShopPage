@@ -28,8 +28,7 @@ export default class Cart extends Component {
 
         return (
             <div className="jumbotron">
-                <h1 className="display-3">Giỏ hàng</h1>
-                <hr className="my-2" />
+                <h2 className="page-section-heading  text-uppercase text-secondary mb-0">Giỏ hàng</h2>
                 <section className="section">
                     <div className="table-responsive">
                         <table className="table product-table">

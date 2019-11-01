@@ -14,7 +14,7 @@ export default class Slide extends Component {
                     <img className="d-block img-fluid" src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2018/02/T2-T%E1%BA%BFt-Sale-t%E1%BB%95ng-fb-Ads-803x420.png" alt="First slide" />
                   </div>
                   <div className="carousel-item">
-                    <img className="d-block img-fluid" src="http://thegioimobi.vn/wp-content/uploads/2017/09/b1.jpg" alt="Second slide" />
+                    <img className="d-block img-fluid" src="http://www.mobiistar.vn/wp-content/uploads/2015/10/banner800x400.jpg" alt="Second slide" />
                   </div>
                   <div className="carousel-item">
                     <img className="d-block img-fluid" src="http://www.techone.vn/image/cache/data/thuy/anh-banner-qc/pk-mua-3-tang-1.png" alt="Third slide" />

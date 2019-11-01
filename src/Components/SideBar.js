@@ -29,7 +29,12 @@ export default class SideBar extends Component {
       <div className="col-lg-3">
         <h1 className="my-4">CodersX</h1>
         <div className="list-group"> 
-          <Link href="/" onClick={(e)=>{return this.props.changeFilterCategory(e,'')}} className={this.props.filterCategory?`list-group-item`:`list-group-item active`} >All</Link>
+          <Link to="/" 
+            onClick={(e)=>{return this.props.changeFilterCategory(e,'')}} 
+            className={this.props.filterCategory?`list-group-item`:`list-group-item active`} 
+          >
+            All
+          </Link>
           {this.showCategory(listCate)}
         </div>
       </div>

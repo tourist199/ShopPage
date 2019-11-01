@@ -7,7 +7,8 @@ import Footer from './Components/Footer';
 import Cart from './Components/Cart';
 import './App.css';
 import router from './router';
-import { BrowserRouter as Router, Route, Link,Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import ProductDetail from './Components/ProductDetail';
 
 
 class App extends Component {
@@ -112,11 +113,11 @@ class App extends Component {
     }else{ //trường hợp 
       list.push(item);
     }
-
     this.setState({
       ListCart : list
     })
   }
+
   changeQuantity = (item,value)=> {
     var list = this.state.ListCart;
     var index = list.find((x)=>x.id===item.id);
@@ -127,6 +128,7 @@ class App extends Component {
       ListCart : list
     })
   }
+
   onDelete = (item) => {
     var list = this.state.ListCart;
     var index = list.find((x)=>x.id===item.id);
@@ -135,29 +137,30 @@ class App extends Component {
       ListCart : list
     })
   }
+
   filterProducts = (list,filter)=>{
     if (filter==='')
       return list;
     return list.filter((x)=>x.category===filter);
   }
+
   changeFilterCategory = (e,filter)=>{
     this.setState({filterCategory:filter})
   }
-
 
   showRoutes = (routers)=>{
     return routers.map((item,index)=>{
       return <Route key={index} path={item.path} exact={item.exact} component={item.main} />
     })
-
   }
+
   render() {
-    
     return (
       <div >
         <Router>
           <div>
             <Header listcart ={this.state.ListCart} />
+
             <div className="container">
               <div className="row">
                 <SideBar listDT = {this.state.listDT} changeFilterCategory={this.changeFilterCategory} filterCategory={this.state.filterCategory}  />
@@ -166,12 +169,13 @@ class App extends Component {
                   <Switch>
                     <Route path="/" exact component={()=><Products  products = {this.filterProducts(this.state.listDT,this.state.filterCategory)} addToCart = {this.addToCart}  />}/>
                     <Route path="/cart" component={()=><Cart listcart = {this.state.ListCart} changeQuantity={this.changeQuantity} onDelete={this.onDelete}/>} />
+                    <Route path="/product-detail/:id_product" component={({match,history})=><ProductDetail addToCart={this.addToCart} history={history} match={match} listDT = {this.state.listDT}    />} />
                     {this.showRoutes(router)}
                   </Switch>
                 </div>
               </div>
-              
             </div>
+            
             <Footer />
           </div>
         </Router>
