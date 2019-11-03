@@ -104,10 +104,16 @@ class App extends Component {
 
   showListCat = listCat => {
     let cat = [];
+    // listCat.forEach((index, item) => {
+    //   if (cat.indexOf(item.category) < 0) {
+    //     cat.push(item.category);
+    //   }
+    // });
     listCat.map((item, index) => {
       if (cat.indexOf(item.category) < 0) {
         cat.push(item.category);
       }
+      return item;
     });
     return cat;
   };
