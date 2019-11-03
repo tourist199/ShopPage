@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Components/Header";
 import SideBar from "./Components/SideBar";
 import Slide from "./Components/Slide";
@@ -6,6 +7,7 @@ import Products from "./Components/Products";
 import Footer from "./Components/Footer";
 import Cart from "./Components/Cart";
 import "./App.css";
+import Routes from "./router";
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +16,7 @@ class App extends Component {
       listDT: [
         {
           id: 1,
+          category: "Iphone",
           name: "Iphone 6 plus",
           price: 700,
           desc: "Điện thoại của Apple",
@@ -23,6 +26,7 @@ class App extends Component {
         },
         {
           id: 2,
+          category: "Nokia",
           name: "Nokia 1202",
           price: 900,
           desc: "Điện thoại nokia ",
@@ -32,6 +36,7 @@ class App extends Component {
         },
         {
           id: 3,
+          category: "Iphone",
           name: "Iphone Xs max",
           price: 1700,
           desc: "Điện thoại mới nhất của Apple",
@@ -41,6 +46,7 @@ class App extends Component {
         },
         {
           id: 4,
+          category: "Samsung",
           name: "Samsung T12",
           price: 700,
           desc: "Điện thoại của Samsung",
@@ -50,15 +56,27 @@ class App extends Component {
         },
         {
           id: 5,
+          category: "Samsung",
           name: "Samsung Joy1",
           price: 700,
           desc: "Điện thoại của Samsung",
           image:
             "https://cdn.fptshop.com.vn/Uploads/Originals/2018/12/11/636801240961123743_vsmart-joy1-plus-den-1.png",
           star: 4
+        },
+        {
+          id: 6,
+          category: "Samsung",
+          name: "Samsung Galaxy S10",
+          price: 1700,
+          desc: "Điện thoại của Samsung",
+          image:
+            "https://img.websosanh.vn/v2/users/dclimg/images/ufdrie60ez77o.jpg",
+          star: 3
         }
       ],
-      listCart: []
+      listCart: [],
+      filterCat: ""
     };
   }
   showCart = cart => {
@@ -83,29 +101,73 @@ class App extends Component {
       );
     }
   };
+
+  showListCat = listCat => {
+    let cat = [];
+    listCat.map((item, index) => {
+      if (cat.indexOf(item.category) < 0) {
+        cat.push(item.category);
+      }
+    });
+    return cat;
+  };
+
+  filterProducts = (listProducts, filter) => {
+    if (filter === "") return listProducts;
+    return listProducts.filter(x => x.category === filter);
+  };
+
+  showRoutes = Routes => {
+    return Routes.map((item, index) => {
+      return (
+        <Route
+          key={index}
+          path={item.path}
+          component={item.main}
+          exact={item.exact}
+        />
+      );
+    });
+  };
   render() {
     return (
-      <div>
-        <div>
-          <Header />
-          <div className="container">
-            <div className="row">
-              <SideBar />
-              <div className="col-lg-9">
-                <Slide />
-                <Products
-                  products={this.state.listDT}
-                  addToCart={this.addToCart}
+      <Router>
+        <Header listCart={this.state.listCart} />
+        <div className="container">
+          <div className="row">
+            <SideBar
+              category={this.showListCat(this.state.listDT)}
+              changeFilterCat={this.changeFilterCat}
+              filterCat={this.state.filterCat}
+            />
+            <div className="col-lg-9">
+              <Slide />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={() => (
+                    <Products
+                      products={this.filterProducts(
+                        this.state.listDT,
+                        this.state.filterCat
+                      )}
+                      addToCart={this.addToCart}
+                    />
+                  )}
                 />
-              </div>
-              <div className="add-cart col-12">
-                {this.showCart(this.state.listCart)}
-              </div>
+
+                <Route
+                  path="/cart"
+                  component={() => this.showCart(this.state.listCart)}
+                />
+                {this.showRoutes(Routes)}
+              </Switch>
             </div>
           </div>
-          <Footer />
         </div>
-      </div>
+        <Footer />
+      </Router>
     );
   }
 
@@ -140,6 +202,12 @@ class App extends Component {
     listCartItem = listCartItem.filter(x => x.id !== item.id);
     this.setState({
       listCart: listCartItem
+    });
+  };
+
+  changeFilterCat = item => {
+    this.setState({
+      filterCat: item
     });
   };
 }

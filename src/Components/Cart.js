@@ -19,6 +19,7 @@ class Cart extends Component {
   };
   totalCart = carts => {
     let total = 0;
+    // Cách 1:
     // for (let i = 0; i < carts.length; i++) {
     //   total += carts[i].price * carts[i].quality;
     // }
