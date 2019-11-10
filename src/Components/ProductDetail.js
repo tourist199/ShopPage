@@ -46,7 +46,7 @@ export default class ProductDetail extends Component {
                                         <a href="/">{productItem.name}</a>
                                     </h4>
                                     <h5>$ {productItem.price}</h5>
-                                    <p className="card-text">{productItem.desc}</p>
+                                    <p className="card-text">{productItem.description}</p>
                                 </div>
                                 <div className="card-footer box-flex" >
                                     <p style={{ color: '#f1c40f' }}>{this.showStar(productItem.star)}</p>
