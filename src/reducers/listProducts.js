@@ -1,23 +1,4 @@
-import React, { Component } from 'react';
-import Header from './Components/Header';
-import SideBar from './Components/SideBar';
-import Slide from './Components/Slide';
-import Products from './Components/Products';
-import Footer from './Components/Footer';
-import Cart from './Components/Cart';
-import './App.css';
-import router from './router';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import ProductDetail from './Components/ProductDetail';
-import ProductsContainer from './containers/ProductsContainer';
-import CartContainer from './containers/CartContainer';
-
-
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      listDT: [
+const initialState = [
         {
           id: 1,
           category:'Apple',
@@ -192,7 +173,6 @@ class App extends Component {
           star:5,
           description: `Đặc điểm nổi bật của Samsung Galaxy A70
           Tìm hiểu thêm
-          Tìm hiểu thêm
           Bộ sản phẩm chuẩn: Sạc,Tai nghe,Sách hướng dẫn,Hộp,Cây lấy sim,Ốp lưng,Cáp
           
           Samsung Galaxy A70 là một phiên bản phóng to của chiếc Samsung Galaxy A50 đã ra mắt trước đó với nhiều cải tiến tới từ bên trong.
@@ -209,81 +189,14 @@ class App extends Component {
           Tốc độ nhận diện và mở khóa máy khá nhanh giúp bạn tiết kiệm được thời gian so với việc nhập mật khẩu thông thường.`
         }
         
-      ],
-      ListCart : [
-        {
-          id: 5,
-          name: 'Vinsmart Joy1',
-          price: 700,
-          desc: 'Điện thoại của Vin',
-          image: 'https://cdn.fptshop.com.vn/Uploads/Originals/2018/12/11/636801240961123743_vsmart-joy1-plus-den-1.png',
-          star:4,
-          quantity: 2
-        },{
-          id: 4,
-          name: 'Fmobile T12',
-          price: 700,
-          desc: 'Điện thoại của FMobile',
-          image:'https://img.websosanh.vn/v2/users/dclimg/images/ufdrie60ez77o.jpg',
-          star:3,
-          quantity: 5
-        }
-      ],
-      filterCategory : ''
-    
+      ]
+
+export default (state = initialState, { type, action }) => {
+    switch (type) {
+        case 'typeName':
+            return { ...state }
+
+        default:
+            return state
     }
-  }
-
-  
-
-  onDelete = (item) => {
-    var list = this.state.ListCart;
-    var index = list.find((x)=>x.id===item.id);
-    list.splice(list.indexOf(index),1);
-    this.setState({
-      ListCart : list
-    })
-  }
-
- 
-
-  changeFilterCategory = (e,filter)=>{
-    this.setState({filterCategory:filter})
-  }
-
-  showRoutes = (routers)=>{
-    return routers.map((item,index)=>{
-      return <Route key={index} path={item.path} exact={item.exact} component={item.main} />
-    })
-  }
-
-  render() {
-    return (
-      <div >
-        <Router>
-          <div>
-            <Header listcart ={this.state.ListCart} />
-
-            <div className="container">
-              <div className="row">
-                <SideBar listDT = {this.state.listDT} changeFilterCategory={this.changeFilterCategory} filterCategory={this.state.filterCategory}  />
-                <div className="col-lg-9">
-                  <Slide />
-                  <Switch>
-                    <Route path="/" exact component={()=><ProductsContainer  />}/>
-                    <Route path="/cart" component={()=><CartContainer />} />
-                    <Route path="/product-detail/:id_product" component={({match,history})=><ProductDetail addToCart={this.addToCart} history={history} match={match} listDT = {this.state.listDT}    />} />
-                    {this.showRoutes(router)}
-                  </Switch>
-                </div>
-              </div>
-            </div>
-            <Footer />
-          </div>
-        </Router>
-      </div>
-    );
-  }
 }
-
-export default App;
