@@ -1,3 +1,4 @@
+import * as types from './../constants/actionType'
 const initialState = [
     {
       id: 5,
@@ -18,10 +19,31 @@ const initialState = [
     }
   ]
 
-export default (state = initialState, { type, payload }) => {
-    switch (type) {
-        case 'typeName':
-            return { ...state }
+export default (state = initialState, action) => {
+    switch (action.type) {
+        case types.ADD_TO_CART:
+          var item = action.item;
+          var index = state.find((x) => x.id === item.id);
+          if (index) { // trường hợp có
+            index.quantity += 1;
+          } else { //trường hợp 
+            state.push(item);
+          }
+          return [...state] ;
+
+        case types.DELETE_CART_ITEM:
+          var item = action.item;
+          var index = state.find((x)=>x.id===item.id);
+          state.splice(state.indexOf(index),1);
+          return [...state];
+
+        case types.CHANGE_QUANTITY_CART_ITEM:
+          var {item,value} = action;
+          var index = state.find((x)=>x.id===item.id);
+          index.quantity += value;
+          if (index.quantity===0)
+            state.splice(state.indexOf(index),1);
+          return [...state];
 
         default:
             return state

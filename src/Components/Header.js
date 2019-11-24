@@ -6,6 +6,9 @@ class Header extends Component {
    
     render() {
         var listcart = this.props.listcart;
+        console.log('====================================');
+        console.log('header');
+        console.log('====================================');
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div className="container">
@@ -39,7 +42,6 @@ class Header extends Component {
                                 <li className="nav-item">
                                     <p className="nav-link">About</p>
                                 </li>
-                                {/* abc */}
                             </NavLink>
                         </ul>
                     </div>

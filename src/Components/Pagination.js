@@ -20,7 +20,7 @@ export default class Pagination extends Component {
             )
         }
         return (
-            <div class="pagination">
+            <div className="pagination">
                 <a href="/" onClick={(e)=>this.props.onChangePageUpDown(e,-1,totalPage)} >&laquo;</a>
                 {rs}
                 <a href="/" onClick={(e)=>this.props.onChangePageUpDown(e,+1,totalPage)} >&raquo;</a>
@@ -29,8 +29,6 @@ export default class Pagination extends Component {
     }
     render() {
         let {totalItems,activePage,pageRangeDisplayed} = this.props;
-        console.log(this.props);
-        
         let totalPage = Math.ceil(totalItems/pageRangeDisplayed);
         let rs = this.showPages(totalPage,activePage);
         return (

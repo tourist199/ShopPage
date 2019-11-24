@@ -15,7 +15,7 @@ export default class SideBar extends Component {
   showCategory = (listCate)=>{
     return listCate.map((item,index)=>{
       return <Link key={index} to='/'
-      onClick={(e)=>{return this.props.changeFilterCategory(e,item)}} 
+      onClick={(e)=>{return this.props.changeFilterCategory(item)}} 
       className={this.props.filterCategory===item?`list-group-item active`:`list-group-item`}
       >
         {item}
@@ -30,7 +30,7 @@ export default class SideBar extends Component {
         <h1 className="my-4">CodersX</h1>
         <div className="list-group"> 
           <Link to="/" 
-            onClick={(e)=>{return this.props.changeFilterCategory(e,'')}} 
+            onClick={(e)=>{return this.props.changeFilterCategory('')}} 
             className={this.props.filterCategory?`list-group-item`:`list-group-item active`} 
           >
             All
