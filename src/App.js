@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import Header from './Components/Header';
 import SideBar from './Components/SideBar';
 import Slide from './Components/Slide';
-import Products from './Components/Products';
 import Footer from './Components/Footer';
-import Cart from './Components/Cart';
 import './App.css';
 import router from './router';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ProductDetail from './Components/ProductDetail';
 import ProductsContainer from './containers/ProductsContainer';
 import CartContainer from './containers/CartContainer';
+import ProductDetailContainer from './containers/ProductDetailContainer';
 
 
 class App extends Component {
@@ -272,7 +271,7 @@ class App extends Component {
                   <Switch>
                     <Route path="/" exact component={()=><ProductsContainer  />}/>
                     <Route path="/cart" component={()=><CartContainer />} />
-                    <Route path="/product-detail/:id_product" component={({match,history})=><ProductDetail addToCart={this.addToCart} history={history} match={match} listDT = {this.state.listDT}    />} />
+                    <Route path="/product-detail/:id_product" component={({match,history})=><ProductDetailContainer match = {match} history = {history} />} />
                     {this.showRoutes(router)}
                   </Switch>
                 </div>

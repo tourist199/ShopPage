@@ -24,9 +24,11 @@ class CartContainer extends Component {
         )
     }
 }
+
 const mapStateToProps = (state) => {
     return {
         listCarts: state.listCarts
     }
 }
+
 export default connect(mapStateToProps) (CartContainer)
